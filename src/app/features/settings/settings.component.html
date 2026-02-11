@@ -1,0 +1,62 @@
+<div class="screen">
+  <div class="shell">
+    <header class="header">
+      <a class="back" routerLink="/vault" aria-label="Back to vault">
+        <span class="material-symbols-outlined">arrow_back_ios_new</span>
+      </a>
+      <h1>Customize</h1>
+      <button type="button" class="theme-action" (click)="toggleDarkMode()" aria-label="Toggle dark/light mode">
+        <span class="material-symbols-outlined">{{ isDarkTheme() ? 'light_mode' : 'dark_mode' }}</span>
+      </button>
+    </header>
+
+    <main class="content">
+      <section class="section">
+        <h2>Security</h2>
+        <div class="group">
+          <button type="button" class="row danger" (click)="lockNow()">
+            <span>Lock Vault</span>
+            <span class="material-symbols-outlined">chevron_right</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Auto-lock</h2>
+        <form class="timeout" [formGroup]="timeoutForm" (ngSubmit)="saveTimeout()">
+          <label for="timeoutMinutes">Auto-lock timeout (minutes)</label>
+          <div class="timeout-controls">
+            <input id="timeoutMinutes" type="number" min="1" max="120" formControlName="minutes" />
+            <button type="submit">Save</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="section danger-zone">
+        <h2>Danger Zone</h2>
+        <p>Type <strong>DELETE</strong> to permanently erase your local vault data.</p>
+        <form [formGroup]="clearForm" (ngSubmit)="clearAllData()">
+          <input placeholder="Type DELETE" formControlName="confirmation" autocomplete="off" />
+          <button type="submit" [disabled]="clearForm.controls.confirmation.value.trim() !== 'DELETE'">
+            Clear all local data
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a routerLink="/vault" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <span class="material-symbols-outlined">vpn_key</span>
+        <span>Vault</span>
+      </a>
+      <a routerLink="/generator" routerLinkActive="active">
+        <span class="material-symbols-outlined">casino</span>
+        <span>Generator</span>
+      </a>
+      <a routerLink="/settings" routerLinkActive="active">
+        <span class="material-symbols-outlined">settings</span>
+        <span>Settings</span>
+      </a>
+    </footer>
+  </div>
+</div>

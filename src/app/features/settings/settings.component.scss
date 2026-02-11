@@ -1,0 +1,233 @@
+.screen {
+  min-height: 100dvh;
+  padding: 0 0 2rem;
+  background: var(--app-gradient), var(--bg-0);
+}
+
+.shell {
+  max-width: 28rem;
+  margin: 0 auto;
+  min-height: 100dvh;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 2.2rem 1fr 2.2rem;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+  background: color-mix(in srgb, var(--bg-0) 84%, transparent);
+}
+
+.header h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 1.35rem;
+  color: var(--ink-strong);
+}
+
+.back,
+.theme-action {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.back {
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  color: var(--ink-strong);
+  text-decoration: none;
+  background: color-mix(in srgb, var(--bg-2) 80%, transparent);
+}
+
+.theme-action {
+  border: 0;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-2) 80%, transparent);
+  color: var(--ink-strong);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.content {
+  flex: 1;
+  padding: 0.75rem 1rem 6rem;
+}
+
+.section {
+  margin-bottom: 0.95rem;
+}
+
+.section h2 {
+  margin: 0 0 0.45rem;
+  color: var(--ink-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.group {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg-1);
+}
+
+.row {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-strong);
+  padding: 0.82rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  font-size: 0.96rem;
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.row.danger {
+  color: var(--danger);
+}
+
+.timeout {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg-1);
+  padding: 0.75rem;
+}
+
+.timeout label {
+  display: block;
+  color: var(--ink-muted);
+  margin-bottom: 0.55rem;
+  font-size: 0.86rem;
+}
+
+.timeout-controls {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+}
+
+.timeout input,
+.timeout button {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font: inherit;
+  height: 2.35rem;
+}
+
+.timeout input {
+  color: var(--ink-strong);
+  background: var(--bg-2);
+  padding: 0 0.7rem;
+}
+
+.timeout button {
+  color: #fff;
+  background: var(--brand);
+  padding: 0 0.9rem;
+  cursor: pointer;
+}
+
+.danger-zone {
+  border: 1px solid color-mix(in srgb, var(--danger) 45%, transparent);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--danger) 8%, var(--bg-1));
+  padding: 0.85rem;
+}
+
+.danger-zone h2 {
+  color: var(--danger);
+}
+
+.danger-zone p {
+  margin: 0 0 0.65rem;
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+}
+
+.danger-zone form {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.danger-zone input,
+.danger-zone button {
+  border-radius: 10px;
+  font: inherit;
+  min-height: 2.35rem;
+}
+
+.danger-zone input {
+  border: 1px solid var(--line);
+  color: var(--ink-strong);
+  background: var(--bg-2);
+  padding: 0 0.7rem;
+}
+
+.danger-zone button {
+  border: 1px solid color-mix(in srgb, var(--danger) 65%, transparent);
+  color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 10%, transparent);
+  cursor: pointer;
+}
+
+.danger-zone button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  border-top: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg-1) 94%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.footer a {
+  flex: 1;
+  color: var(--ink-muted);
+  text-decoration: none;
+  min-height: 4.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.18rem;
+  font-size: 0.72rem;
+}
+
+.footer a span:first-child {
+  font-size: 1.4rem;
+}
+
+.footer a.active {
+  color: var(--brand);
+}
+
+@media (min-width: 900px) {
+  .shell {
+    max-width: 30rem;
+  }
+}

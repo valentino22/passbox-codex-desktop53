@@ -1,0 +1,63 @@
+<div class="screen">
+  <div class="content">
+    <div class="brand">
+      <div class="brand-icon">
+        <span class="material-symbols-outlined">shield_lock</span>
+      </div>
+      <h1>PassBox Vault</h1>
+      <p>
+        {{
+          isSetupMode()
+            ? 'Create your master password to encrypt everything in this browser.'
+            : 'Unlock your encrypted passwords with your master password.'
+        }}
+      </p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <label for="masterPassword">Master password</label>
+      <div class="input-row">
+        <input
+          id="masterPassword"
+          [type]="showPassword() ? 'text' : 'password'"
+          formControlName="masterPassword"
+          autocomplete="current-password"
+          placeholder="Enter master password"
+        />
+        <button type="button" (click)="togglePasswordVisibility()">
+          <span class="material-symbols-outlined">{{ showPassword() ? 'visibility_off' : 'visibility' }}</span>
+        </button>
+      </div>
+
+      @if (isSetupMode()) {
+        <label for="confirmMasterPassword">Confirm master password</label>
+        <div class="input-row">
+          <input
+            id="confirmMasterPassword"
+            [type]="showConfirmPassword() ? 'text' : 'password'"
+            formControlName="confirmMasterPassword"
+            autocomplete="new-password"
+            placeholder="Confirm master password"
+          />
+          <button type="button" (click)="toggleConfirmVisibility()">
+            <span class="material-symbols-outlined">
+              {{ showConfirmPassword() ? 'visibility_off' : 'visibility' }}
+            </span>
+          </button>
+        </div>
+      }
+
+      @if (form.controls.masterPassword.touched && form.controls.masterPassword.invalid) {
+        <p class="error">Master password must be at least 10 characters.</p>
+      }
+
+      @if (errorMessage()) {
+        <p class="error" role="alert">{{ errorMessage() }}</p>
+      }
+
+      <button class="submit" type="submit" [disabled]="isSubmitting()">
+        {{ isSetupMode() ? 'Create and Unlock Vault' : 'Unlock Vault' }}
+      </button>
+    </form>
+  </div>
+</div>

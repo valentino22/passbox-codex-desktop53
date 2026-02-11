@@ -1,0 +1,85 @@
+<div class="screen">
+  <div class="shell">
+    <header class="header">
+      <div class="header-spacer"></div>
+      <h1>Vault</h1>
+      <button type="button" class="header-action" (click)="toggleTheme($event)" aria-label="Toggle dark/light mode">
+        <span class="material-symbols-outlined">{{ isDarkTheme() ? 'light_mode' : 'dark_mode' }}</span>
+      </button>
+    </header>
+
+    <div class="search-wrap">
+      <label class="search" for="search">
+        <span class="material-symbols-outlined">search</span>
+        <input id="search" type="search" [formControl]="searchControl" placeholder="Search your collection..." />
+      </label>
+    </div>
+
+    <main class="content">
+      @if (!filteredEntries().length) {
+        <div class="empty">
+          <h2>No entries found</h2>
+          <p>Create your first password entry to start filling your vault.</p>
+        </div>
+      } @else {
+        <div class="cards">
+          @for (entry of filteredEntries(); track entry.id; let index = $index) {
+            <article
+              class="card"
+              [style.background]="cardBackground(index)"
+              (click)="openEntry(entry.id)"
+              (keydown.enter)="openEntry(entry.id)"
+              (keydown.space)="openEntry(entry.id)"
+              tabindex="0"
+              role="button"
+              [attr.aria-label]="'Open ' + entry.title"
+            >
+              <div class="card-main">
+                <div class="card-icon">
+                  <span class="material-symbols-outlined">{{ iconForEntry(entry) }}</span>
+                </div>
+                <p class="title">{{ entry.title }}</p>
+                <p class="subtitle">{{ entry.username }}</p>
+              </div>
+
+              <div class="card-actions">
+                <button type="button" (click)="copyUsername(entry, $event)" [attr.aria-label]="'Copy username for ' + entry.title">
+                  <span class="material-symbols-outlined">
+                    {{ copiedUsernameEntryId() === entry.id ? 'check' : 'person' }}
+                  </span>
+                </button>
+                <button type="button" (click)="copyPassword(entry, $event)" [attr.aria-label]="'Copy password for ' + entry.title">
+                  <span class="material-symbols-outlined">
+                    {{ copiedPasswordEntryId() === entry.id ? 'check' : 'key' }}
+                  </span>
+                </button>
+                <button type="button" class="danger" (click)="removeEntry(entry.id, $event)" [attr.aria-label]="'Delete ' + entry.title">
+                  <span class="material-symbols-outlined">delete</span>
+                </button>
+              </div>
+            </article>
+          }
+        </div>
+      }
+    </main>
+
+    <footer class="footer">
+      <a routerLink="/vault" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <span class="material-symbols-outlined">vpn_key</span>
+        <span>Vault</span>
+      </a>
+      <a routerLink="/generator" routerLinkActive="active">
+        <span class="material-symbols-outlined">casino</span>
+        <span>Generator</span>
+      </a>
+      <a routerLink="/settings" routerLinkActive="active">
+        <span class="material-symbols-outlined">settings</span>
+        <span>Settings</span>
+      </a>
+    </footer>
+  </div>
+
+  <a class="fab" routerLink="/vault/new" aria-label="Create new entry">
+    <span class="material-symbols-outlined">add_circle</span>
+  </a>
+</div>

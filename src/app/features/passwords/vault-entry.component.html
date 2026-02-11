@@ -1,0 +1,45 @@
+<section class="panel">
+  <header>
+    <h2>{{ isCreateMode() ? 'Create entry' : 'Edit entry' }}</h2>
+    <p>All fields are encrypted together when the vault is saved.</p>
+  </header>
+
+  @if (errorMessage()) {
+    <p class="error" role="alert">{{ errorMessage() }}</p>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="save()" novalidate>
+    <label for="title">Title</label>
+    <input id="title" formControlName="title" autocomplete="off" />
+
+    <label for="username">Username</label>
+    <input id="username" formControlName="username" autocomplete="off" />
+
+    <label for="password">Password</label>
+    <div class="password-row">
+      <input
+        id="password"
+        [type]="showPassword() ? 'text' : 'password'"
+        formControlName="password"
+        autocomplete="current-password"
+      />
+      <button type="button" (click)="togglePasswordVisibility()">
+        {{ showPassword() ? 'Hide' : 'Show' }}
+      </button>
+    </div>
+
+    <label for="url">URL (optional)</label>
+    <input id="url" formControlName="url" inputmode="url" autocomplete="off" />
+
+    <label for="notes">Notes (optional)</label>
+    <textarea id="notes" formControlName="notes" rows="5"></textarea>
+
+    <div class="actions">
+      <button type="submit" class="primary">Save</button>
+      <button type="button" (click)="cancel()">Cancel</button>
+      @if (!isCreateMode()) {
+        <button type="button" class="danger" (click)="deleteCurrent()">Delete</button>
+      }
+    </div>
+  </form>
+</section>

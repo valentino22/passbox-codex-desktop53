@@ -1,0 +1,240 @@
+.screen {
+  --shell-max: 28rem;
+  position: relative;
+  min-height: 100dvh;
+  background:
+    radial-gradient(circle at 12% -8%, color-mix(in srgb, var(--brand) 42%, transparent), transparent 38%),
+    radial-gradient(circle at 90% 5%, color-mix(in srgb, #ec4899 28%, transparent), transparent 33%),
+    radial-gradient(circle at 45% 105%, color-mix(in srgb, var(--brand-2) 22%, transparent), transparent 37%),
+    var(--bg-0);
+}
+
+.shell {
+  max-width: var(--shell-max);
+  margin: 0 auto;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  backdrop-filter: blur(12px);
+  background: color-mix(in srgb, var(--bg-0) 84%, transparent);
+  border-bottom: 1px solid var(--line);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  letter-spacing: -0.015em;
+  color: var(--ink-strong);
+}
+
+.header-spacer,
+.header-action {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.header-action {
+  border: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  color: var(--ink-strong);
+  background: color-mix(in srgb, var(--bg-2) 80%, transparent);
+  cursor: pointer;
+}
+
+.search-wrap {
+  padding: 0 1rem 1rem;
+}
+
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search span {
+  position: absolute;
+  left: 0.8rem;
+  color: var(--ink-muted);
+  font-size: 1.2rem;
+}
+
+.search input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  background: var(--bg-2);
+  color: var(--ink-strong);
+}
+
+.content {
+  flex: 1;
+  padding: 0 1rem 6.2rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  aspect-ratio: 1 / 1;
+  border: 0;
+  border-radius: 18px;
+  padding: 0.9rem;
+  text-align: left;
+  color: #fff;
+  cursor: pointer;
+  transition:
+    box-shadow 200ms var(--ease-out);
+}
+
+.card:hover {
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.26);
+}
+
+.card:focus-visible {
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--brand) 46%, transparent),
+    0 14px 26px rgba(0, 0, 0, 0.26);
+}
+
+.card-icon {
+  width: 2.8rem;
+  height: 2.8rem;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.card-icon span {
+  font-size: 1.75rem;
+}
+
+.title {
+  margin: 0.75rem 0 0.12rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.subtitle {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 0.86rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.45rem;
+}
+
+.card-actions button {
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 0;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.26);
+  cursor: pointer;
+}
+
+.card-actions button.danger {
+  background: rgba(127, 29, 29, 0.42);
+}
+
+.empty {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1.1rem;
+  text-align: center;
+  background: var(--bg-1);
+}
+
+.empty h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  color: var(--ink-strong);
+}
+
+.empty p {
+  margin: 0;
+  color: var(--ink-muted);
+}
+
+.fab {
+  position: fixed;
+  right: max(1.15rem, calc((100vw - var(--shell-max)) / 2 + 1rem));
+  bottom: 5.4rem;
+  width: 4.4rem;
+  height: 4.4rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(140deg, #9b5de5, #1173d4);
+  box-shadow: 0 16px 28px rgba(91, 33, 182, 0.45);
+}
+
+.fab span {
+  font-size: 2.85rem;
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  border-top: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg-1) 94%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.footer a {
+  flex: 1;
+  color: var(--ink-muted);
+  text-decoration: none;
+  min-height: 4.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.18rem;
+  font-size: 0.72rem;
+}
+
+.footer a span:first-child {
+  font-size: 1.4rem;
+}
+
+.footer a.active {
+  color: var(--brand-2);
+}
+
+@media (min-width: 900px) {
+  .screen {
+    --shell-max: 30rem;
+  }
+}
